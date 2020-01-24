@@ -42,6 +42,10 @@ module.exports = {
         filename: "[name].min.js"
     },
 
+    resolve: {
+        extensions: ['.ts', '.js', '.json']
+    },
+
     mode : isDevelopment ? 'development':'production',
 
     module: {
