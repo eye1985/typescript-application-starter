@@ -9,7 +9,12 @@ const intro:TextNode = {
     text : "Typescript application starter"
 };
 
+const test = () => {
+    console.log("test");
+};
+
 export default function(){
+    test();
     document.querySelector('#root').innerHTML = `
         ${helloWorld()}
         

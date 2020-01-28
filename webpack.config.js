@@ -27,71 +27,86 @@ const watch = isDevelopment ? true : false;
 
 const assetPublicPath = isDevelopment ? "" : "";
 
-module.exports = {
-    plugins,
-    watch,
+module.exports = env => {
 
-    devtool: "source-map",
+    const isEs6 = env === "es6";
+    let ENTRY_NAME = "main";
+    let CONFIG_FILE = "tsconfig.json";
 
-    entry: {
-        "main": "./src/app.ts",
-    },
+    if(isEs6){
+        ENTRY_NAME = "main-es6";
+        CONFIG_FILE = "tsconfig.es6.json";
+    }
 
-    output: {
-        path: path.join(__dirname, "dist"),
-        filename: "[name].min.js",
-        library: "MyLib",
-        libraryExport: "default"
-    },
+    return {
+        plugins,
+        watch,
 
-    resolve: {
-        extensions: ['.ts', '.js', '.json']
-    },
+        devtool: "source-map",
 
-    mode : isDevelopment ? 'development':'production',
-
-    module: {
-        rules: [{
-            test: /\.ts$/,
-            exclude: /node_modules/,
-            loader: "ts-loader"
+        entry: {
+            [ENTRY_NAME]: "./src/app.ts",
         },
 
-            {
-                test: /\.(sa|sc|c)ss$/,
-                use: [
-                    isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'postcss-loader',
-                    'sass-loader',
-                ],
-            },
+        output: {
+            path: path.join(__dirname, "dist"),
+            filename: "[name].min.js",
+            library: "MyLib",
+            libraryExport: "default"
+        },
 
-            {
-                test: /\.(ttf|eot|woff|woff2)$/,
-                loader: 'file-loader',
+        resolve: {
+            extensions: ['.ts', '.js', '.json']
+        },
+
+        mode : isDevelopment ? 'development':'production',
+
+        module: {
+            rules: [{
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                loader: "ts-loader",
                 options: {
-                    name: 'fonts/[name].[ext]',
-                    publicPath: assetPublicPath
+                    configFile:CONFIG_FILE
                 }
             },
 
-            {
-                test: /\.(svg|jpg|jpeg|png|bmp)$/,
-                loader: 'file-loader',
-                options: {
-                    name: 'images/[name].[ext]',
-                    publicPath: assetPublicPath
-                }
-            }
-        ]
-    },
+                {
+                    test: /\.(sa|sc|c)ss$/,
+                    use: [
+                        isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        'postcss-loader',
+                        'sass-loader',
+                    ],
+                },
 
-    devServer :{
-        contentBase: path.join(__dirname, 'dist'),
-        compress:true,
-        port:3000,
-        hot:true,
-        watchContentBase: true
+                {
+                    test: /\.(ttf|eot|woff|woff2)$/,
+                    loader: 'file-loader',
+                    options: {
+                        name: 'fonts/[name].[ext]',
+                        publicPath: assetPublicPath
+                    }
+                },
+
+                {
+                    test: /\.(svg|jpg|jpeg|png|bmp)$/,
+                    loader: 'file-loader',
+                    options: {
+                        name: 'images/[name].[ext]',
+                        publicPath: assetPublicPath
+                    }
+                }
+            ]
+        },
+
+        devServer :{
+            contentBase: path.join(__dirname, 'dist'),
+            compress:true,
+            port:3000,
+            hot:true,
+            watchContentBase: true
+        }
     }
-}
+};

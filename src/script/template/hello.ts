@@ -1,4 +1,4 @@
-export default function():string{
+export default ():string => {
     return `
         <div>
             Hello world!
