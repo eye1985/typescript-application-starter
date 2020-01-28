@@ -32,10 +32,12 @@ module.exports = env => {
     const isEs6 = env === "es6";
     let ENTRY_NAME = "main";
     let CONFIG_FILE = "tsconfig.json";
+    let entries = ["regenerator-runtime","core-js","./src/app.ts"];
 
     if(isEs6){
         ENTRY_NAME = "main-es6";
         CONFIG_FILE = "tsconfig.es6.json";
+        entries = ["./src/app.ts"];
     }
 
     return {
@@ -45,7 +47,7 @@ module.exports = env => {
         devtool: "source-map",
 
         entry: {
-            [ENTRY_NAME]: "./src/app.ts",
+            [ENTRY_NAME]:entries
         },
 
         output: {
