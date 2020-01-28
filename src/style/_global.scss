@@ -13,19 +13,3 @@ body {
     color: var(--global-text-color);
     font-family: var(--global-font-family);
 }
-
-.container {
-    max-width: 1200px;
-    overflow:auto;
-    margin: 0 auto;
-}
-
-.main{
-    border: 1px solid #000;
-    padding:20px;
-    margin-top:20px;
-}
-
-.flex-container{
-    display:flex;
-}

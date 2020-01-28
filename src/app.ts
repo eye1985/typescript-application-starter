@@ -1,4 +1,5 @@
-import './style/main.css';
+import './style/style.scss';
+import helloWorld from './script/template/hello';
 
 interface TextNode {
     text : string
@@ -8,13 +9,12 @@ const intro:TextNode = {
     text : "Typescript application starter"
 };
 
-
-// Your scripting here
-document.addEventListener('DOMContentLoaded',function(){
+export default function(){
     document.querySelector('#root').innerHTML = `
-        Hello world
+        ${helloWorld()}
+        
         <div class="main">
             ${intro.text}
         </div>
     `;
-});
+};

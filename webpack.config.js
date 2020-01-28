@@ -39,7 +39,9 @@ module.exports = {
 
     output: {
         path: path.join(__dirname, "dist"),
-        filename: "[name].min.js"
+        filename: "[name].min.js",
+        library: "MyLib",
+        libraryExport: "default"
     },
 
     resolve: {
