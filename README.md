@@ -4,14 +4,13 @@ A starter pack for developing Typescript application.
 
 
 ## Requirements
-[Node.js](https://nodejs.org) Latest LTS (10.x.x)
+[Node.js](https://nodejs.org) Latest LTS (14.x.x)
 
 ## What is included in this boilerplate
-1. Typescript 3.x
+1. Typescript 4.x
 2. Webpack and webpack dev server
-3. CSS-loader, style-loader, file-loader, and url-loader included
-4. CSS modules are enabled by default
-5. Post-CSS with autoprefixer and cssnano
+3. CSS modules are enabled by default
+4. Post-CSS with autoprefixer and cssnano
 
 ## Install
 ### Step 1

@@ -7,8 +7,7 @@ const isDevelopment = process.env.NODE_ENV === "development";
 
 // filename: "[name].[contenthash].css",
 const extractSass = new MiniCssExtractPlugin({
-    filename: isDevelopment ? "[name].css":"[name].[contenthash].css",
-    disable: isDevelopment
+    filename: isDevelopment ? "[name].css":"[name].[contenthash].css"
 });
 
 const plugins = [
@@ -23,12 +22,12 @@ const plugins = [
     })
 ];
 
+// Use this if you dont want to use dev server
 const watch = isDevelopment ? true : false;
 
 const assetPublicPath = isDevelopment ? "" : "";
 
 module.exports = env => {
-
     const isEs6 = env === "es6";
     let ENTRY_NAME = "main";
     let CONFIG_FILE = "tsconfig.json";
@@ -42,7 +41,6 @@ module.exports = env => {
 
     return {
         plugins,
-        watch,
 
         devtool: "source-map",
 
@@ -62,6 +60,9 @@ module.exports = env => {
         },
 
         mode : isDevelopment ? 'development':'production',
+        stats: {
+            errorDetails: true
+        },
 
         module: {
             rules: [{
@@ -104,11 +105,9 @@ module.exports = env => {
         },
 
         devServer :{
-            contentBase: path.join(__dirname, 'dist'),
             compress:true,
             port:3000,
-            hot:true,
-            watchContentBase: true
+            hot:true
         }
     }
 };
